@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Movie Recommender</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7ff;
+      text-align: center;
+      padding: 40px;
+    }
+    h2 {
+      color: #4a4a4a;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #ffe066;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 12px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎬 AI Movie Recommender 🍿</h2>
+  <input type="text" id="movieInput" placeholder="Enter a movie name..." />
+  <button onclick="getRecommendations()">Get Recommendations</button>
+  <ul id="results"></ul>
+
+  <script>
+    async function getRecommendations() {
+      const movie = document.getElementById('movieInput').value;
+      const res = await fetch("http://localhost:5000/recommend", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title: movie })
+      });
+      const data = await res.json();
+      const results = document.getElementById('results');
+      results.innerHTML = "";
+
+      if (data.recommendations) {
+        data.recommendations.forEach(rec => {
+          const li = document.createElement('li');
+          li.innerText = rec;
+          results.appendChild(li);
+        });
+      } else {
+        results.innerHTML = "<li>" + data.error + "</li>";
+      }
+    }
+  </script>
+</body>
+</html>
