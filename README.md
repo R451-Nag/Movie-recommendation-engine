@@ -1,3 +1,4 @@
+![image alt](https://github.com/R451-Nag/Movie-recommendation-engine/blob/acfdd65822f08cdcee1b22d9f0354518ae322338/Screenshot%202025-05-10%20104502.png)
 # Movie-recommendation-engine
 This is a simple AI-powered **recommendation system** that suggests similar movies based on a user’s input. The backend is built using **Flask** and **scikit-learn**, and it exposes a **RESTful API** to deliver intelligent recommendations. The frontend is a visually appealing web interface built with plain HTML, CSS, and JavaScript.
 
